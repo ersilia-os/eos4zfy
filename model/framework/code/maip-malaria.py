@@ -36,6 +36,6 @@ now = datetime.now()
 open( sys.argv[2] , "wb").write(download_response.content)
 print("Results saved in maip_predictions.csv")
 
-os.remove('maip.csv')
+
 
 
