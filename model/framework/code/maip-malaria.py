@@ -33,4 +33,4 @@ pred2.rename(columns = {'smiles':'SMILES'}, inplace = True)
 
 pred2.to_csv(sys.argv[2], index = False)
 
-
+os.remove('maip.csv')
