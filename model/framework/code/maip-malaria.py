@@ -5,7 +5,7 @@ import numpy as np
 import sys
 import os
 
-smiles = pd.read_csv(sys.argv[1], sep=',', header=None, names=['smiles'])
+smiles = pd.read_csv(sys.argv[1], sep=',', header=None, skiprows=1, names=['smiles'])
 id_col = np.arange(0, len(smiles) ,1)
 id_col = [str(x) for x in id_col ]
 smiles.insert(0, column = 'id', value = id_col)
