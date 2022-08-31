@@ -14,7 +14,7 @@ smiles.to_csv('maip.csv', index=False)
 
 url = 'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/submit/mmv_job'
 file = {'input1': open('maip.csv', 'rb')}
-payload = { 'standardise': 'true','dl__ignore_cache': 'false'}
+payload = { 'standardise': True,'dl__ignore_cache': False}
 
 r = requests.post(url, files=file, data = payload)
 
