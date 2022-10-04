@@ -20,7 +20,7 @@ Antimalarial Activity prediction from ChEMBL
 The GPL-v3 license applies to all parts of the repository.
 
 # History 
-- We have developed a python script that accesses the web server available https://gdb-chembl-simsearch.gdb.tools/ to run the predictions.
+- We have developed a python script that accesses the web server available at https://www.ebi.ac.uk/chembl/maip/ to run the predictions.
 - `requests` and `BeautifulSoup` libraries are used to post the input to the server and fetch the results.
 - Model was incorporated to Ersilia on 10/04/2022
 
