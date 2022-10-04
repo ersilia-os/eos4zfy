@@ -16,14 +16,15 @@ url = 'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/submit/mmv_job'
 file = {'input1': open('maip.csv', 'rb')}
 payload = { 'standardise': True,'dl__ignore_cache': False}
 
-r = requests.post(url, files=file, data = payload)
+session = requests.Session()
+r = session.post(url, files=file, data = payload)
 
 soup = BeautifulSoup(r.text, features = 'html.parser')
 job_id = str(soup.text)
 job_id = job_id.split(':')[1].strip().translate({ ord(c): None for c in "\"}" })
 
 download_url = 'http://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/outputs/' + job_id + '/predictions.csv'
-download_response = requests.get(download_url,allow_redirects=True)
+download_response = session.get(download_url,allow_redirects=True)
 
 open( sys.argv[2] , "wb").write(download_response.content)
 
