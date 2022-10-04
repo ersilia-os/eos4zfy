@@ -1,28 +1,28 @@
-# Model title
-## Model identifiers
-- Slug:
-- Ersilia ID: 
-- Tags: 
+# Antimalarial activity prediction
+## Model identifiers 
+- Slug: maip-malaria
+- Ersilia ID: eos4zfy
+- Tags: Plasmodium falciparum, Antibiotic, Malaria, Bioactivity
 
 # Model description
-Short description of the model in one or two sentences.
-- Input:
-- Output: {unit and description of output) 
-- Model type: (Regression or Classification)
+Antimalarial Activity prediction from ChEMBL
+- Input: SMILES
+- Output: Score (Higher score indicates Higher antimalarial potential) 
+- Model type: Regression
 - Training set: (number of compounds and link to the training data)
-- Mode of training: (is it pretrained? that is were the checkpoints downloaded and used to train the model? or is it retrained? that is trained from scratch with an updated data)
+- Mode of training: Online
 
 # Source code
-Cite the source publication.
-- Code: include link to the source code
-- Checkpoints: include the link to the checkpoints used if model is a pretrained model
+- Code: Code: The model uses the web application available at https://www.ebi.ac.uk/chembl/maip/
+- Checkpoints: N/A
 
 # License
-State the licences used which are GPL v3 license used by Ersilia and the license used by the source code, if any exists. Use [this guide]() on how to license new models to be incorporated into Ersilia's model hub 
+The GPL-v3 license applies to all parts of the repository.
 
 # History 
-- State the date when the model was downloaded and incorporated into Ersilia.
-- List any essential steps/modifications to the original code
+- We have developed a python script that accesses the web server available https://gdb-chembl-simsearch.gdb.tools/ to run the predictions.
+- `requests` and `BeautifulSoup` libraries are used to post the input to the server and fetch the results.
+- Model was incorporated to Ersilia on 10/04/2022
 
 # About us
 The [Ersilia Open Source Initiative](https://ersilia.io) is a Non Profit Organization ([1192266](https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/5170657/full-print)) with the mission is to equip labs, universities and clinics in LMIC with AI/ML tools for infectious disease research.
