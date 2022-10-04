@@ -29,9 +29,10 @@ download_response = session.get(download_url,allow_redirects=True)
 open( sys.argv[2] , "wb").write(download_response.content)
 
 pred = pd.read_csv(sys.argv[2])
-pred2 = pred[['smiles','model_score']]
-pred2.rename(columns = {'smiles':'SMILES'}, inplace = True)
+del pred['id']
+del pred['standard_smiles']
+pred.rename(columns = {'smiles':'SMILES'}, inplace = True)
 
-pred2.to_csv(sys.argv[2], index = False)
+pred.to_csv(sys.argv[2], index = False)
 
 os.remove('maip.csv')
