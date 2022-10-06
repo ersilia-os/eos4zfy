@@ -3,13 +3,12 @@
 - Slug: maip-malaria
 - Ersilia ID: eos4zfy
 - Tags: Plasmodium falciparum, Antibiotic, Malaria, Bioactivity
-
 # Model description
 Antimalarial Activity prediction from ChEMBL
 - Input: SMILES
 - Output: Score (Higher score indicates Higher antimalarial potential) 
 - Model type: Regression
-- Training set: (number of compounds and link to the training data)
+- Training set: 6,865,161 molecules (https://jcheminf.biomedcentral.com/articles/10.1186/s13321-021-00487-2/tables/1)
 - Mode of training: Online
 
 # Source code
