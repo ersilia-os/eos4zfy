@@ -1,4 +1,4 @@
-FROM bentoml/model-server:0.11.0-py37
+FROM bentoml/model-server:0.11.0-py310
 MAINTAINER ersilia
 
 RUN pip install requests==2.31.0
