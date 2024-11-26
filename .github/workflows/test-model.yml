@@ -122,6 +122,7 @@ jobs:
       - name: Generate exmaple input
         run: |
             source activate
+            ersilia info
             ersilia example -n 5 -f input.csv --predefined
             cat input.csv
 
