@@ -112,23 +112,14 @@ jobs:
               exit 1
             fi
           
-      - name: Serve model
+      - name: Generate input and run model
         env:
           MODEL_ID: ${{ github.event.repository.name }}
         run: |
             source activate
             ersilia -v serve $MODEL_ID
-
-      - name: Generate exmaple input
-        run: |
-            source activate
-            ersilia info
             ersilia example -n 5 -f input.csv --predefined
             cat input.csv
-
-      - name: Run model
-        run: |
-            source activate
             ersilia -v run -i "input.csv" -o "output.csv"
             ersilia close
             cat output.csv
