@@ -64,9 +64,9 @@ outputs = pred['model_score'].tolist()
 # write output in a .csv file
 with open(output_file, "w") as f:
     writer = csv.writer(f)
-    writer.writerow(["model_score"]) # header
+    writer.writerow(["maip_score"]) # header
     for o in outputs:
-        writer.writerow([o])
+        writer.writerow(o)
         
 
 os.remove('maip.csv')
