@@ -58,15 +58,13 @@ pred = pd.read_csv(output_file_temp)
 
 # convert model_score to list
 outputs = pred['model_score'].tolist()
-
-
+print(outputs)
 
 # write output in a .csv file
 with open(output_file, "w") as f:
     writer = csv.writer(f)
     writer.writerow(["maip_score"]) # header
     for o in outputs:
-        writer.writerow(o)
+        writer.writerow([o])
         
-
 os.remove('maip.csv')
