@@ -2,7 +2,7 @@
 
 Prediction of the antimalarial potential of small molecules. This model is an ensemble of smaller QSAR models trained on proprietary data from various sources, up to a total of >7M compounds. The training sets belong to Evotec, Johns Hopkins, MRCT, MMV - St. Jude, AZ, GSK, and St. Jude Vendor Library. The code and training data are not released, using this model posts predictions to the MAIP online server. The Ersilia Model Hub also offers MAIP-surrogate as a downloadable package for IP-sensitive queries.
 
-This model was incorporated on 2022-08-18.
+This model was incorporated on 2022-08-23.
 
 ## Information
 ### Identifiers
