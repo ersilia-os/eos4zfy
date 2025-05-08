@@ -43,10 +43,6 @@ Below are the **Output Columns** of the model:
 - **Environment Size (Mb):** `371`
 - **Image Size (Mb):** `321.13`
 
-**Computational Performance (seconds):**
-- 4 inputs: `50.88`
-- 20 inputs: `44.16`
-- 100 inputs: `41.16`
 
 ### References
 - **Source Code**: [https://www.ebi.ac.uk/chembl/maip/](https://www.ebi.ac.uk/chembl/maip/)
