@@ -40,7 +40,7 @@ Below are the **Output Columns** of the model:
 
 ### Resource Consumption
 - **Model Size (Mb):** `1`
-- **Environment Size (Mb):** `371`
+- **Environment Size (Mb):** `384`
 - **Image Size (Mb):** `321.13`
 
 
@@ -49,7 +49,7 @@ Below are the **Output Columns** of the model:
 - **Publication**: [https://jcheminf.biomedcentral.com/articles/10.1186/s13321-021-00487-2](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-021-00487-2)
 - **Publication Type:** `Peer reviewed`
 - **Publication Year:** `2021`
-- **Ersilia Contributor:** [Amna-28](https://github.com/Amna-28)
+- **Ersilia Contributor:** [Abellegese](https://github.com/Abellegese)
 
 ### License
 This package is licensed under a [GPL-3.0](https://github.com/ersilia-os/ersilia/blob/master/LICENSE) license. The model contained within this package is licensed under a [None](LICENSE) license.
