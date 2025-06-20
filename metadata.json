@@ -38,7 +38,7 @@
     "Publication": "https://jcheminf.biomedcentral.com/articles/10.1186/s13321-021-00487-2",
     "Source Code": "https://www.ebi.ac.uk/chembl/maip/",
     "License": "None",
-    "Contributor": "Amna-28",
+    "Contributor": "Abellegese",
     "Incorporation Date": "2022-08-23",
     "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip",
     "DockerHub": "https://hub.docker.com/r/ersiliaos/eos4zfy",
