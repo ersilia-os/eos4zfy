@@ -39,6 +39,8 @@
     "License": "None",
     "Contributor": "Amna-28",
     "Incorporation Date": "2022-08-23",
+    "Last Packaging Date": "2025-10-22",
+    "Release": "v1.0.0",
     "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip",
     "DockerHub": "https://hub.docker.com/r/ersiliaos/eos4zfy",
     "Docker Architecture": [
@@ -47,12 +49,12 @@
     ],
     "Model Size": 1.0,
     "Environment Size": 385.0,
-    "Image Size": 321.29,
-    "Computational Performance 1": 50.87,
-    "Computational Performance 2": 40.3,
-    "Computational Performance 3": 37.52,
-    "Computational Performance 4": 233.63,
-    "Computational Performance 5": -1.0,
+    "Image Size": 401.4,
+    "Computational Performance 1": 43.05,
+    "Computational Performance 2": 30.32,
+    "Computational Performance 3": 31.54,
+    "Computational Performance 4": 180.86,
+    "Computational Performance 5": 643.23,
     "Input Shape": "Single",
     "Docker Pack Method": "FastAPI"
 }
