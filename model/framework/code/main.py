@@ -5,6 +5,7 @@ import numpy as np
 import sys
 import csv
 import os
+import tempfile
 from time import sleep
 
 # parse arguments
@@ -16,7 +17,7 @@ with open(input_file, "r") as f:
     reader = csv.reader(f)
     next(reader) # skip header
     smiles_list = [r[0] for r in reader]
-    
+
 # save smiles to a dataframe
 smiles = pd.DataFrame(smiles_list, columns=['smiles'])
 
@@ -24,10 +25,12 @@ id_col = np.arange(0, len(smiles) ,1)
 id_col = [str(x) for x in id_col ]
 smiles.insert(0, column = 'id', value = id_col)
 
-smiles.to_csv('maip.csv', index=False)
+tmp_fd, maip_csv = tempfile.mkstemp(suffix=".csv")
+os.close(tmp_fd)
+smiles.to_csv(maip_csv, index=False)
 
 url = 'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/submit/mmv_job'
-file = {'input1': open('maip.csv', 'rb')}
+file = {'input1': open(maip_csv, 'rb')}
 payload = { 'standardise': True,'dl__ignore_cache': False}
 
 session = requests.Session()
@@ -67,4 +70,4 @@ with open(output_file, "w") as f:
     for o in outputs:
         writer.writerow([o])
         
-os.remove('maip.csv')
+os.remove(maip_csv)
