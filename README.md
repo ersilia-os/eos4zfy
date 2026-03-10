@@ -2,7 +2,7 @@
 
 Prediction of the antimalarial potential of small molecules. This model is an ensemble of smaller QSAR models trained on proprietary data from various sources, up to a total of >7M compounds. The training sets belong to Evotec, Johns Hopkins, MRCT, MMV - St. Jude, AZ, GSK, and St. Jude Vendor Library. The code and training data are not released, using this model posts predictions to the MAIP online server. The Ersilia Model Hub also offers MAIP-surrogate as a downloadable package for IP-sensitive queries.
 
-This model was incorporated on 2022-08-23.Last packaged on 2025-10-22.
+This model was incorporated on 2022-08-23.Last packaged on 2026-03-10.
 
 ## Information
 ### Identifiers
@@ -35,18 +35,18 @@ Below are the **Output Columns** of the model:
 - **Source:** `Online`
 - **Source Type:** `External`
 - **DockerHub**: [https://hub.docker.com/r/ersiliaos/eos4zfy](https://hub.docker.com/r/ersiliaos/eos4zfy)
-- **Docker Architecture:** `AMD64`, `ARM64`
+- **Docker Architecture:** `AMD64`
 - **S3 Storage**: [https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip)
 
 ### Resource Consumption
 - **Model Size (Mb):** `1`
 - **Environment Size (Mb):** `368`
-- **Image Size (Mb):** `401.4`
+- **Image Size (Mb):** `404.87`
 
 **Computational Performance (seconds):**
-- 10 inputs: `43.05`
-- 100 inputs: `31.54`
-- 10000 inputs: `643.23`
+- 10 inputs: `72.02`
+- 100 inputs: `59.23`
+- 10000 inputs: `978.38`
 
 ### References
 - **Source Code**: [https://www.ebi.ac.uk/chembl/maip/](https://www.ebi.ac.uk/chembl/maip/)
