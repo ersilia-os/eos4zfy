@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
-import numpy as np
 import sys
 import csv
 import os
+import io
 import tempfile
 from time import sleep
 
@@ -15,59 +15,96 @@ output_file = sys.argv[2]
 # read SMILES from .csv file, assuming one column with header
 with open(input_file, "r") as f:
     reader = csv.reader(f)
-    next(reader) # skip header
+    next(reader)  # skip header
     smiles_list = [r[0] for r in reader]
 
-# save smiles to a dataframe
-smiles = pd.DataFrame(smiles_list, columns=['smiles'])
-
-id_col = np.arange(0, len(smiles) ,1)
-id_col = [str(x) for x in id_col ]
-smiles.insert(0, column = 'id', value = id_col)
-
-tmp_fd, maip_csv = tempfile.mkstemp(suffix=".csv")
-os.close(tmp_fd)
-smiles.to_csv(maip_csv, index=False)
-
-url = 'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/submit/mmv_job'
-file = {'input1': open(maip_csv, 'rb')}
-payload = { 'standardise': True,'dl__ignore_cache': False}
+SUBMIT_URL = 'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/submit/mmv_job'
+POLL_INTERVAL = 10  # seconds between status checks
+MAX_WAIT = 600      # 10 minutes
 
 session = requests.Session()
-while True:
-    r = session.post(url, files=file, data = payload)
-    if r.status_code == 200:
-        break
-    sleep(1)
 
-soup = BeautifulSoup(r.text, features = 'html.parser')
-job_id = str(soup.text)
 
-job_id = job_id.split(':')[1].strip().translate({ ord(c): None for c in "\"}" })
+def run_maip(smiles_chunk):
+    """Submit a SMILES list to MAIP and return [model_score, ...]. Raises on failure."""
+    df = pd.DataFrame({'id': range(len(smiles_chunk)), 'smiles': smiles_chunk})
+    tmp_fd, tmp_csv = tempfile.mkstemp(suffix=".csv")
+    os.close(tmp_fd)
+    df.to_csv(tmp_csv, index=False)
+    try:
+        # Submit with retry on transient connection/SSL errors
+        print(f"Submitting {len(smiles_chunk)} compounds to MAIP...")
+        for attempt in range(10):
+            try:
+                with open(tmp_csv, 'rb') as fh:
+                    r = session.post(SUBMIT_URL, files={'input1': fh},
+                                     data={'standardise': True, 'dl__ignore_cache': False})
+                if r.status_code == 200:
+                    break
+                print(f"  Submission attempt {attempt + 1} returned status {r.status_code}, retrying...")
+            except requests.exceptions.RequestException as e:
+                print(f"  Submission attempt {attempt + 1} failed ({e}), retrying...")
+            sleep(POLL_INTERVAL)
+        else:
+            raise RuntimeError("Submission failed after retries")
 
-while True:
-    download_url = 'http://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/outputs/' + job_id + '/predictions.csv'
-    download_response = session.get(download_url,allow_redirects=True)
+        job_id = str(BeautifulSoup(r.text, 'html.parser').text)
+        job_id = job_id.split(':')[1].strip().translate({ord(c): None for c in '\"}'})
+        print(f"  Job submitted: {job_id}")
+        download_url = f'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/outputs/{job_id}/predictions.csv'
 
-    if download_response.status_code == 200:
-        break
-    sleep(1)
-    
-output_file_temp = sys.argv[2]
+        # Poll download URL until ready or timeout
+        dl = None
+        for elapsed in range(0, MAX_WAIT, POLL_INTERVAL):
+            try:
+                r = session.get(download_url, allow_redirects=True)
+                if r.status_code == 200:
+                    dl = r
+                    break
+                print(f"  Waiting for results... ({elapsed + POLL_INTERVAL}s elapsed)")
+            except requests.exceptions.RequestException as e:
+                print(f"  Network error while polling ({e}), retrying...")
+            sleep(POLL_INTERVAL)
+        else:
+            raise TimeoutError(f"Job {job_id} timed out after {MAX_WAIT}s")
 
-open(output_file_temp , "wb").write(download_response.content)
+        print(f"  Results ready for {len(smiles_chunk)} compounds.")
+        return pd.read_csv(io.StringIO(dl.content.decode('utf-8')))['model_score'].tolist()
+    finally:
+        os.remove(tmp_csv)
 
-pred = pd.read_csv(output_file_temp)
 
-# convert model_score to list
-outputs = pred['model_score'].tolist()
-print(outputs)
+def get_chunk_size(n):
+    """Return next smaller chunk size in the fallback hierarchy: 1000 → 100 → 10 → 1."""
+    for size in [1000, 100, 10]:
+        if n > size:
+            return size
+    return 1 if n > 1 else None
+
+
+def process(smiles_chunk):
+    """Run MAIP, recursively splitting into smaller chunks on any failure."""
+    try:
+        return run_maip(smiles_chunk)
+    except Exception as e:
+        size = get_chunk_size(len(smiles_chunk))
+        if size is None:  # single molecule failed
+            print(f"  Molecule failed, filling with NaN.")
+            return [float('nan')]
+        print(f"  Batch of {len(smiles_chunk)} failed ({e}), splitting into chunks of {size}...")
+        results = []
+        for i in range(0, len(smiles_chunk), size):
+            results.extend(process(smiles_chunk[i:i + size]))
+        return results
+
+
+print(f"Processing {len(smiles_list)} compounds.")
+outputs = process(smiles_list)
+print(f"Done. {sum(1 for o in outputs if o != o)} NaN(s) out of {len(outputs)} compounds.")
 
 # write output in a .csv file
 with open(output_file, "w") as f:
     writer = csv.writer(f)
-    writer.writerow(["maip_score"]) # header
+    writer.writerow(["maip_score"])  # header
     for o in outputs:
         writer.writerow([o])
-        
-os.remove(maip_csv)
