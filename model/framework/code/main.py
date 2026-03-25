@@ -8,6 +8,8 @@ import io
 import tempfile
 from time import sleep
 
+sys.stdout.reconfigure(line_buffering=True)
+
 # parse arguments
 input_file = sys.argv[1]
 output_file = sys.argv[2]
@@ -19,8 +21,8 @@ with open(input_file, "r") as f:
     smiles_list = [r[0] for r in reader]
 
 SUBMIT_URL = 'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/submit/mmv_job'
-POLL_INTERVAL = 10  # seconds between status checks
-MAX_WAIT = 600      # 10 minutes
+POLL_INTERVAL = 20  # seconds between status checks
+MAX_WAIT = 3600      # 60 minutes
 
 session = requests.Session()
 
