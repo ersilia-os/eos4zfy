@@ -22,25 +22,34 @@ with open(input_file, "r") as f:
 
 SUBMIT_URL = 'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/submit/mmv_job'
 POLL_INTERVAL = 20  # seconds between status checks
-MAX_WAIT = 3600      # 60 minutes
+MAX_COMPOUNDS = 10000
+MAX_TIMEOUT = 3600   # seconds for MAX_COMPOUNDS
+MIN_TIMEOUT = 10     # seconds for a single molecule
+
+
+def chunk_timeout(n):
+    """Scale timeout linearly: MIN_TIMEOUT at 1 molecule, MAX_TIMEOUT at MAX_COMPOUNDS."""
+    return max(MIN_TIMEOUT, int(MAX_TIMEOUT * n / MAX_COMPOUNDS))
 
 session = requests.Session()
 
 
 def run_maip(smiles_chunk):
     """Submit a SMILES list to MAIP and return [model_score, ...]. Raises on failure."""
+    timeout = chunk_timeout(len(smiles_chunk))
     df = pd.DataFrame({'id': range(len(smiles_chunk)), 'smiles': smiles_chunk})
     tmp_fd, tmp_csv = tempfile.mkstemp(suffix=".csv")
     os.close(tmp_fd)
     df.to_csv(tmp_csv, index=False)
     try:
         # Submit with retry on transient connection/SSL errors
-        print(f"Submitting {len(smiles_chunk)} compounds to MAIP...")
+        print(f"Submitting {len(smiles_chunk)} compounds to MAIP (timeout={timeout}s)...")
         for attempt in range(10):
             try:
                 with open(tmp_csv, 'rb') as fh:
                     r = session.post(SUBMIT_URL, files={'input1': fh},
-                                     data={'standardise': True, 'dl__ignore_cache': False})
+                                     data={'standardise': True, 'dl__ignore_cache': False},
+                                     timeout=(30, timeout))
                 if r.status_code == 200:
                     break
                 print(f"  Submission attempt {attempt + 1} returned status {r.status_code}, retrying...")
@@ -57,18 +66,18 @@ def run_maip(smiles_chunk):
 
         # Poll download URL until ready or timeout
         dl = None
-        for elapsed in range(0, MAX_WAIT, POLL_INTERVAL):
+        for elapsed in range(0, timeout, POLL_INTERVAL):
             try:
-                r = session.get(download_url, allow_redirects=True)
+                r = session.get(download_url, allow_redirects=True, timeout=(30, timeout))
                 if r.status_code == 200:
                     dl = r
                     break
-                print(f"  Waiting for results... ({elapsed + POLL_INTERVAL}s elapsed)")
+                print(f"  Waiting for results... ({elapsed + POLL_INTERVAL}s elapsed, limit={timeout}s)")
             except requests.exceptions.RequestException as e:
                 print(f"  Network error while polling ({e}), retrying...")
             sleep(POLL_INTERVAL)
         else:
-            raise TimeoutError(f"Job {job_id} timed out after {MAX_WAIT}s")
+            raise TimeoutError(f"Job {job_id} timed out after {timeout}s")
 
         print(f"  Results ready for {len(smiles_chunk)} compounds.")
         return pd.read_csv(io.StringIO(dl.content.decode('utf-8')))['model_score'].tolist()
