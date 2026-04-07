@@ -24,7 +24,7 @@ SUBMIT_URL = 'https://www.ebi.ac.uk/chembl/interface_api/delayed_jobs/submit/mmv
 POLL_INTERVAL = 20  # seconds between status checks
 MAX_COMPOUNDS = 10000
 MAX_TIMEOUT = 3600   # seconds for MAX_COMPOUNDS
-MIN_TIMEOUT = 10     # seconds for a single molecule
+MIN_TIMEOUT = 300    # seconds floor (MAIP queue overhead), scales up linearly from here
 
 
 def chunk_timeout(n):
