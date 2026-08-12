@@ -30,8 +30,23 @@ for _logger in (
 CHECKPOINTS_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "..", "checkpoints")
 )
-FEATURE_IDS = np.load(os.path.join(CHECKPOINTS_DIR, "feature_ids.npy"))  # sorted ascending
-FEATURE_LOG_PROB_POS = np.load(os.path.join(CHECKPOINTS_DIR, "feature_log_prob_pos.npy"))
+
+
+def _load_checkpoint(name):
+    """Load a checkpoint array, raising a clear error if it has not been fetched."""
+    path = os.path.join(CHECKPOINTS_DIR, name)
+    try:
+        return np.load(path)
+    except FileNotFoundError as error:
+        raise FileNotFoundError(
+            f"MAIP checkpoint '{name}' not found in {CHECKPOINTS_DIR}. Checkpoints are "
+            "gitignored and stored on eosvc/S3 (see access.json); fetch them with "
+            "`eosvc download --path .` from the model repository root before running."
+        ) from error
+
+
+FEATURE_IDS = _load_checkpoint("feature_ids.npy")  # sorted ascending
+FEATURE_LOG_PROB_POS = _load_checkpoint("feature_log_prob_pos.npy")
 PRIOR_POS = 0.0  # class_log_prior_[1] of the released MAIP model
 MORGAN_RADIUS = 3
 

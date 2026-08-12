@@ -19,7 +19,10 @@ _, smiles_list = read_smiles(input_file)
 
 # run model (one row per input molecule, order preserved, np.nan for failures)
 outputs = predict(smiles_list)
-assert outputs.shape[0] == len(smiles_list)
+if outputs.shape != (len(smiles_list), 1):
+    raise ValueError(
+        f"Expected model output shape ({len(smiles_list)}, 1), got {outputs.shape}."
+    )
 
 # write output
 write_out(outputs, ["maip_score"], output_file, np.float32)
