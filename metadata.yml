@@ -1,6 +1,6 @@
 Identifier: eos4zfy
 Slug: maip-malaria
-Status: In progress
+Status: Ready
 Title: 'MAIP: antimalarial activity prediction'
 Description: Prediction of the antimalarial potential of small molecules against
   the blood stage of Plasmodium falciparum. MAIP is a consensus naive-Bayes 
@@ -38,6 +38,18 @@ Source Code: https://github.com/chembl/maip_public
 License: MIT
 Contributor: Amna-28
 Incorporation Date: '2022-08-23'
+Last Packaging Date: '2026-08-12'
+Release: v1.0.0
 S3: https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip
+DockerHub: https://hub.docker.com/r/ersiliaos/eos4zfy
+Docker Architecture:
+  - AMD64
+  - ARM64
 Model Size: 15.0
 Environment Size: 563.0
+Image Size: 655.77
+Computational Performance 1: 31.48
+Computational Performance 2: 23.29
+Computational Performance 3: 20.71
+Computational Performance 4: 21.68
+Computational Performance 5: 40.17
