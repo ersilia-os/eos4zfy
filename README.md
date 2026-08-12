@@ -2,7 +2,7 @@
 
 Prediction of the antimalarial potential of small molecules against the blood stage of Plasmodium falciparum. MAIP is a consensus naive-Bayes model derived from 6.5 million malaria bioactivity values across 11 proprietary compound collections, combined without ever sharing the underlying compound structures. This version runs the model fully locally using the open-source weights released by ChEMBL under the MIT license, reproducing the scores of the previous online-server implementation.
 
-This model was incorporated on 2022-08-23.Last packaged on 2026-04-14.
+This model was incorporated on 2022-08-23.Last packaged on 2026-08-12.
 
 ## Information
 ### Identifiers
@@ -41,12 +41,12 @@ Below are the **Output Columns** of the model:
 ### Resource Consumption
 - **Model Size (Mb):** `15`
 - **Environment Size (Mb):** `563`
-- **Image Size (Mb):** `405.42`
+- **Image Size (Mb):** `655.77`
 
 **Computational Performance (seconds):**
-- 10 inputs: `59.82`
-- 100 inputs: `51.68`
-- 10000 inputs: `1304.87`
+- 10 inputs: `31.48`
+- 100 inputs: `20.71`
+- 10000 inputs: `40.17`
 
 ### References
 - **Source Code**: [https://github.com/chembl/maip_public](https://github.com/chembl/maip_public)
