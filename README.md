@@ -1,6 +1,6 @@
 # MAIP: antimalarial activity prediction
 
-Prediction of the antimalarial potential of small molecules. This model is an ensemble of smaller QSAR models trained on proprietary data from various sources, up to a total of >7M compounds. The training sets belong to Evotec, Johns Hopkins, MRCT, MMV - St. Jude, AZ, GSK, and St. Jude Vendor Library. The code and training data are not released, using this model posts predictions to the MAIP online server. The Ersilia Model Hub also offers MAIP-surrogate as a downloadable package for IP-sensitive queries.
+Prediction of the antimalarial potential of small molecules against the blood stage of Plasmodium falciparum. MAIP is a consensus naive-Bayes model derived from 6.5 million malaria bioactivity values across 11 proprietary compound collections, combined without ever sharing the underlying compound structures. This version runs the model fully locally using the open-source weights released by ChEMBL under the MIT license, reproducing the scores of the previous online-server implementation.
 
 This model was incorporated on 2022-08-23.Last packaged on 2026-04-14.
 
@@ -14,7 +14,7 @@ This model was incorporated on 2022-08-23.Last packaged on 2026-04-14.
 - **Subtask:** `Activity prediction`
 - **Biomedical Area:** `Malaria`
 - **Target Organism:** `Plasmodium falciparum`
-- **Tags:** `P.falciparum`, `Malaria`, `Antimicrobial activity`
+- **Tags:** `Antiparasitic activity`, `Antimicrobial activity`
 
 ### Input
 - **Input:** `Compound`
@@ -23,16 +23,16 @@ This model was incorporated on 2022-08-23.Last packaged on 2026-04-14.
 ### Output
 - **Output Dimension:** `1`
 - **Output Consistency:** `Fixed`
-- **Interpretation:** Higher score indicates higher antimalarial potential
+- **Interpretation:** Higher score indicates greater predicted likelihood of blood-stage antimalarial activity
 
 Below are the **Output Columns** of the model:
 | Name | Type | Direction | Description |
 |------|------|-----------|-------------|
-| maip_score | float | high | Score of the antimalaria potential of small molecules |
+| maip_score | float | high | Score of the antimalarial potential of small molecules against the blood stage of Plasmodium falciparum |
 
 
 ### Source and Deployment
-- **Source:** `Online`
+- **Source:** `Local`
 - **Source Type:** `External`
 - **DockerHub**: [https://hub.docker.com/r/ersiliaos/eos4zfy](https://hub.docker.com/r/ersiliaos/eos4zfy)
 - **Docker Architecture:** `AMD64`, `ARM64`
@@ -49,14 +49,14 @@ Below are the **Output Columns** of the model:
 - 10000 inputs: `1304.87`
 
 ### References
-- **Source Code**: [https://www.ebi.ac.uk/chembl/maip/](https://www.ebi.ac.uk/chembl/maip/)
-- **Publication**: [https://doi.org/10.1186/s13321-021-00487-2](https://doi.org/10.1186/s13321-021-00487-2)
+- **Source Code**: [https://github.com/chembl/maip_public](https://github.com/chembl/maip_public)
+- **Publication**: [https://doi.org/10.1021/acsmedchemlett.3c00369](https://doi.org/10.1021/acsmedchemlett.3c00369)
 - **Publication Type:** `Peer reviewed`
-- **Publication Year:** `2021`
+- **Publication Year:** `2023`
 - **Ersilia Contributor:** [Amna-28](https://github.com/Amna-28)
 
 ### License
-This package is licensed under a [GPL-3.0](https://github.com/ersilia-os/ersilia/blob/master/LICENSE) license. The model contained within this package is licensed under a [None](LICENSE) license.
+This package is licensed under a [GPL-3.0](https://github.com/ersilia-os/ersilia/blob/master/LICENSE) license. The model contained within this package is licensed under a [MIT](LICENSE) license.
 
 **Notice**: Ersilia grants access to models _as is_, directly from the original authors, please refer to the original code repository and/or publication if you use the model in your research.
 
