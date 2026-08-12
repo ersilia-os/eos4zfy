@@ -39,7 +39,7 @@ License: MIT
 Contributor: Amna-28
 Incorporation Date: '2022-08-23'
 Last Packaging Date: '2026-08-12'
-Release: v1.0.0
+Release: v2.0.0
 S3: https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip
 DockerHub: https://hub.docker.com/r/ersiliaos/eos4zfy
 Docker Architecture:
