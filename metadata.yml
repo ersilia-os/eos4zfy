@@ -1,0 +1,38 @@
+Identifier: eos4zfy
+Slug: maip-malaria
+Status: In progress
+Title: "MAIP: antimalarial activity prediction"
+Description: Prediction of the antimalarial potential of small molecules against the
+  blood stage of Plasmodium falciparum. MAIP is a consensus naive-Bayes model derived
+  from 6.5 million malaria bioactivity values across 11 proprietary compound
+  collections, combined without ever sharing the underlying compound structures. This
+  version runs the model fully locally using the open-source weights released by ChEMBL
+  under the MIT license, reproducing the scores of the previous online-server
+  implementation.
+Deployment:
+  - Local
+Source: Local
+Source Type: External
+Task: Annotation
+Subtask: Activity prediction
+Input:
+  - Compound
+Input Dimension: 1
+Output:
+  - Score
+Output Dimension: 1
+Output Consistency: Fixed
+Interpretation: Higher score indicates greater predicted likelihood of blood-stage antimalarial activity
+Tag:
+  - Antiparasitic activity
+  - Antimicrobial activity
+Biomedical Area:
+  - Malaria
+Target Organism:
+  - Plasmodium falciparum
+Publication Type: Peer reviewed
+Publication Year: 2023
+Publication: https://doi.org/10.1021/acsmedchemlett.3c00369
+Source Code: https://github.com/chembl/maip_public
+License: MIT
+Contributor: Amna-28

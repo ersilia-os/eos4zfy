@@ -1,2 +1,2 @@
 name,type,direction,description
-maip_score,float,high,Score of the antimalaria potential of small molecules
+maip_score,float,high,Score of the antimalarial potential of small molecules against the blood stage of Plasmodium falciparum
