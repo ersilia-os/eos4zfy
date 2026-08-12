@@ -1,0 +1,7 @@
+python: "3.10"
+commands:
+    - ["pip", "rdkit-pypi", "2021.9.4"]
+    - ["pip", "six", "1.16.0"]
+    - ["pip", "standardiser", "0.1.9"]
+    - ["pip", "numpy", "1.23.5"]
+    - ["pip", "ersilia-pack-utils", "0.1.5"]

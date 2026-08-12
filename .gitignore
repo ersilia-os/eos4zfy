@@ -128,3 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /data.h5
+
+# Ersilia model artifacts (persisted via eosvc/S3, not git)
+model/checkpoints/
+model/framework/fit/
+install.sh
