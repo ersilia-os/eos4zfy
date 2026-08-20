@@ -1,6 +1,6 @@
 # MAIP: antimalarial activity prediction
 
-Prediction of the antimalarial potential of small molecules against the blood stage of Plasmodium falciparum. MAIP is a consensus naive-Bayes model derived from 6.5 million malaria bioactivity values across 11 proprietary compound collections, combined without ever sharing the underlying compound structures. This version runs the model fully locally using the open-source weights released by ChEMBL under the MIT license, reproducing the scores of the previous online-server implementation.
+Scores compounds for blood-stage antimalarial activity against Plasmodium falciparum. MAIP was built by Bosc and colleagues at the European Bioinformatics Institute from an unusual foundation: several pharmaceutical companies contributed proprietary screening results, which were combined with public data into a consensus model without any single dataset being disclosed. That breadth is its main strength, since antimalarial screening data are otherwise fragmented across organisations that rarely pool them.
 
 This model was incorporated on 2022-08-23.Last packaged on 2026-08-12.
 
@@ -23,7 +23,7 @@ This model was incorporated on 2022-08-23.Last packaged on 2026-08-12.
 ### Output
 - **Output Dimension:** `1`
 - **Output Consistency:** `Fixed`
-- **Interpretation:** Higher score indicates greater predicted likelihood of blood-stage antimalarial activity
+- **Interpretation:** Score for blood-stage Plasmodium falciparum activity, where higher values indicate greater predicted potency.
 
 Below are the **Output Columns** of the model:
 | Name | Type | Direction | Description |
@@ -49,14 +49,14 @@ Below are the **Output Columns** of the model:
 - 10000 inputs: `40.17`
 
 ### References
-- **Source Code**: [https://github.com/chembl/maip_public](https://github.com/chembl/maip_public)
-- **Publication**: [https://doi.org/10.1021/acsmedchemlett.3c00369](https://doi.org/10.1021/acsmedchemlett.3c00369)
+- **Source Code**: [https://www.ebi.ac.uk/chembl/maip/](https://www.ebi.ac.uk/chembl/maip/)
+- **Publication**: [https://doi.org/10.1186/s13321-021-00487-2](https://doi.org/10.1186/s13321-021-00487-2)
 - **Publication Type:** `Peer reviewed`
-- **Publication Year:** `2023`
+- **Publication Year:** `2021`
 - **Ersilia Contributor:** [Amna-28](https://github.com/Amna-28)
 
 ### License
-This package is licensed under a [GPL-3.0](https://github.com/ersilia-os/ersilia/blob/master/LICENSE) license. The model contained within this package is licensed under a [MIT](LICENSE) license.
+This package is licensed under a [GPL-3.0](https://github.com/ersilia-os/ersilia/blob/master/LICENSE) license. The model contained within this package is licensed under a [None](LICENSE) license.
 
 **Notice**: Ersilia grants access to models _as is_, directly from the original authors, please refer to the original code repository and/or publication if you use the model in your research.
 
