@@ -1,6 +1,6 @@
 # MAIP: antimalarial activity prediction
 
-Scores compounds for blood-stage antimalarial activity against Plasmodium falciparum. MAIP was built by Bosc and colleagues at the European Bioinformatics Institute from an unusual foundation: several pharmaceutical companies contributed proprietary screening results, which were combined with public data into a consensus model without any single dataset being disclosed. That breadth is its main strength, since antimalarial screening data are otherwise fragmented across organisations that rarely pool them.
+Scores compounds for blood-stage antimalarial activity against Plasmodium falciparum. Bosc and colleagues at the European Bioinformatics Institute drew on eleven proprietary screening sets from five partners, some 6.5 million bioactivity measurements, and pooled them by exchanging naive Bayes models rather than compounds, so no partner disclosed its chemistry. A single metamodel reproduces that consensus in one pass, reaching ROC AUC of 0.67 to 0.82 on three validation sets. Ersilia now runs the weights ChEMBL released locally instead of calling the web service.
 
 This model was incorporated on 2022-08-23.Last packaged on 2026-08-12.
 
@@ -23,7 +23,7 @@ This model was incorporated on 2022-08-23.Last packaged on 2026-08-12.
 ### Output
 - **Output Dimension:** `1`
 - **Output Consistency:** `Fixed`
-- **Interpretation:** Score for blood-stage Plasmodium falciparum activity, where higher values indicate greater predicted potency.
+- **Interpretation:** Higher score means greater predicted likelihood of blood-stage Plasmodium falciparum activity, on an unbounded log-probability scale.
 
 Below are the **Output Columns** of the model:
 | Name | Type | Direction | Description |
