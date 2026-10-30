@@ -49,14 +49,14 @@ Below are the **Output Columns** of the model:
 - 10000 inputs: `40.17`
 
 ### References
-- **Source Code**: [https://www.ebi.ac.uk/chembl/maip/](https://www.ebi.ac.uk/chembl/maip/)
-- **Publication**: [https://doi.org/10.1186/s13321-021-00487-2](https://doi.org/10.1186/s13321-021-00487-2)
+- **Source Code**: [https://github.com/chembl/maip_public](https://github.com/chembl/maip_public)
+- **Publication**: [https://doi.org/10.1021/acsmedchemlett.3c00369](https://doi.org/10.1021/acsmedchemlett.3c00369)
 - **Publication Type:** `Peer reviewed`
-- **Publication Year:** `2021`
+- **Publication Year:** `2023`
 - **Ersilia Contributor:** [Amna-28](https://github.com/Amna-28)
 
 ### License
-This package is licensed under a [GPL-3.0](https://github.com/ersilia-os/ersilia/blob/master/LICENSE) license. The model contained within this package is licensed under a [None](LICENSE) license.
+This package is licensed under a [GPL-3.0](https://github.com/ersilia-os/ersilia/blob/master/LICENSE) license. The model contained within this package is licensed under a [MIT](LICENSE) license.
 
 **Notice**: Ersilia grants access to models _as is_, directly from the original authors, please refer to the original code repository and/or publication if you use the model in your research.
 
