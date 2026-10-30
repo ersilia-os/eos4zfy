@@ -2,13 +2,14 @@ Identifier: eos4zfy
 Slug: maip-malaria
 Status: Ready
 Title: 'MAIP: antimalarial activity prediction'
-Description: Scores compounds for blood-stage antimalarial activity against Plasmodium
-  falciparum. Bosc and colleagues at the European Bioinformatics Institute drew on
-  eleven proprietary screening sets from five partners, some 6.5 million bioactivity
-  measurements, and pooled them by exchanging naive Bayes models rather than compounds,
-  so no partner disclosed its chemistry. A single metamodel reproduces that consensus
-  in one pass, reaching ROC AUC of 0.67 to 0.82 on three validation sets. Ersilia
-  now runs the weights ChEMBL released locally instead of calling the web service.
+Description: Scores compounds for blood-stage antimalarial activity against 
+  Plasmodium falciparum. Bosc and colleagues at the European Bioinformatics 
+  Institute drew on eleven proprietary screening sets from five partners, some 
+  6.5 million bioactivity measurements, and pooled them by exchanging naive 
+  Bayes models rather than compounds, so no partner disclosed its chemistry. A 
+  single metamodel reproduces that consensus in one pass, reaching ROC AUC of 
+  0.67 to 0.82 on three validation sets. Ersilia now runs the weights ChEMBL 
+  released locally instead of calling the web service.
 Deployment:
   - Local
 Source: Local
@@ -22,8 +23,8 @@ Output:
   - Score
 Output Dimension: 1
 Output Consistency: Fixed
-Interpretation: Higher score means greater predicted likelihood of blood-stage Plasmodium
-  falciparum activity, on an unbounded log-probability scale.
+Interpretation: Higher score means greater predicted likelihood of blood-stage 
+  Plasmodium falciparum activity, on an unbounded log-probability scale.
 Tag:
   - Antiparasitic activity
   - Antimicrobial activity
@@ -39,7 +40,7 @@ License: MIT
 Contributor: Amna-28
 Incorporation Date: '2022-08-23'
 Last Packaging Date: '2026-08-12'
-Release: v2.0.0
+Release: v2.0.1
 S3: https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip
 DockerHub: https://hub.docker.com/r/ersiliaos/eos4zfy
 Docker Architecture:
