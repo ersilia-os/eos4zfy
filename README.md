@@ -2,7 +2,8 @@
 
 Scores compounds for blood-stage antimalarial activity against Plasmodium falciparum. Bosc and colleagues at the European Bioinformatics Institute drew on eleven proprietary screening sets from five partners, some 6.5 million bioactivity measurements, and pooled them by exchanging naive Bayes models rather than compounds, so no partner disclosed its chemistry. A single metamodel reproduces that consensus in one pass, reaching ROC AUC of 0.67 to 0.82 on three validation sets. Ersilia now runs the weights ChEMBL released locally instead of calling the web service.
 
-This model was incorporated on 2022-08-23.Last packaged on 2026-08-12.
+This model was incorporated on 2022-08-23.
+Last packaged on 2026-08-12.
 
 ## Information
 ### Identifiers
@@ -37,6 +38,7 @@ Below are the **Output Columns** of the model:
 - **DockerHub**: [https://hub.docker.com/r/ersiliaos/eos4zfy](https://hub.docker.com/r/ersiliaos/eos4zfy)
 - **Docker Architecture:** `AMD64`, `ARM64`
 - **S3 Storage**: [https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos4zfy.zip)
+- **Apptainer**: [https://models-sif.s3.eu-north-1.amazonaws.com/eos4zfy_v2.sif](https://models-sif.s3.eu-north-1.amazonaws.com/eos4zfy_v2.sif)
 
 ### Resource Consumption
 - **Model Size (Mb):** `15`
