@@ -1,0 +1,8 @@
+{
+  "prior_pos": 0.0,
+  "morgan_radius": 3,
+  "use_features": true,
+  "use_counts": false,
+  "n_features": 893855,
+  "source": "chembl/maip_public summed_model.joblib"
+}
