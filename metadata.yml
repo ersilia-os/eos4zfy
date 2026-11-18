@@ -46,6 +46,7 @@ DockerHub: https://hub.docker.com/r/ersiliaos/eos4zfy
 Docker Architecture:
   - AMD64
   - ARM64
+Apptainer: https://models-sif.s3.eu-north-1.amazonaws.com/eos4zfy_v2.sif
 Model Size: 15.0
 Environment Size: 563.0
 Image Size: 655.77
